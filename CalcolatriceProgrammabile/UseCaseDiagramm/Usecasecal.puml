@@ -1,0 +1,9 @@
+@startuml calcolatrice
+skinparam actorStyle awesome
+left to right direction
+
+actor "Utente" as user 
+
+
+
+@enduml
