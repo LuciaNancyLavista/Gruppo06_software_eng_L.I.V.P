@@ -31,7 +31,7 @@ operazione --> division : <<includes>>
 operazione --> sqrt : <<includes>>
 
 
-stack --> manipolazione 
+Stack --> manipolazione 
 manipolazione --> clear : <<includes>>
 manipolazione --> drop : <<includes>>
 manipolazione --> dup : <<includes>>
