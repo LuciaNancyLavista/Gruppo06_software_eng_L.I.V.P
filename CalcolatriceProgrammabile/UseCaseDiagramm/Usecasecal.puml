@@ -3,7 +3,38 @@ skinparam actorStyle awesome
 left to right direction
 
 actor "Utente" as user 
+actor "Stack" as stack 
 
 
+usecase "Inserisci numero" as inserisci
+usecase "Inserisci operazione" as operazione
+usecase "Addizione" as add 
+usecase "Sottrazione" as minus
+usecase "Moltiplicazione" as multiply
+usecase "Divisione" as division
+usecase "Radice quadrata" as sqrt 
+
+usecase "Manipolazione Stack" as manipolazione
+usecase "Pulisci" as clear
+usecase "Rimuovi Ultimo" as drop
+usecase "Duplica ultimo" as dup
+usecase "Scambia elementi" as swap
+usecase "Copia Penultimo Elemento" as over 
+
+user  --> operazione
+user --> inserisci 
+operazione --> add : <<inlcudes>>
+operazione --> minus : <<includes>>
+operazione --> multiply : <<includes>>
+operazione --> division : <<includes>>
+operazione --> sqrt : <<includes>>
+
+
+stack --> manipolazione 
+manipolazione --> clear : <<includes>>
+manipolazione --> drop : <<includes>>
+manipolazione --> dup : <<includes>>
+manipolazione --> swap : <<includes>>
+manipolazione -->over : <<includes>>
 
 @enduml
