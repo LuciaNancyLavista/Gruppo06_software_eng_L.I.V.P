@@ -3,7 +3,8 @@ skinparam actorStyle awesome
 left to right direction
 
 actor "Utente" as user 
-actor "Stack" as stack 
+actor "Stack" as Stack 
+
 
 
 usecase "Inserisci numero" as inserisci
@@ -36,5 +37,6 @@ manipolazione --> drop : <<includes>>
 manipolazione --> dup : <<includes>>
 manipolazione --> swap : <<includes>>
 manipolazione -->over : <<includes>>
+
 
 @enduml
