@@ -11,7 +11,8 @@ usecase "Addizione" as add
 usecase "Sottrazione" as minus
 usecase "Moltiplicazione" as multiply
 usecase "Divisione" as division
-usecase "Radice quadrata" as sqrt 
+usecase "Radice quadrata" as sqrt
+usecase "Inverti segno" as insg 
 
 usecase "Manipolazione Stack" as manipolazione
 usecase "Pulisci" as clear
@@ -33,6 +34,7 @@ operazione --> minus : <<includes>>
 operazione --> multiply : <<includes>>
 operazione --> division : <<includes>>
 operazione --> sqrt : <<includes>>
+operazione --> insg : <<includes>>
 
 
 user --> manipolazione 
