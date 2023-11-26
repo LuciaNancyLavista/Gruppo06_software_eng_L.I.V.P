@@ -1,11 +1,9 @@
 @startuml calcolatrice
 skinparam actorStyle awesome
+skinparam shadowing true
 left to right direction
 
 actor "Utente" as user 
-
-
-
 
 usecase "Inserisci numero" as inserisci
 usecase "Inserisci operazione" as operazione
