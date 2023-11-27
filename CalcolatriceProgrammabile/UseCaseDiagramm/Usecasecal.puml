@@ -12,7 +12,12 @@ usecase "Sottrazione" as minus
 usecase "Moltiplicazione" as multiply
 usecase "Divisione" as division
 usecase "Radice quadrata" as sqrt 
-usecase "Eccezione Aritmetica" as exception
+
+usecase "Gestione Eccezione Aritmetica" as exc_ari 
+usecase "Gestione Stack Vuoto" as stack_empty
+usecase "Gestione Numero di argomenti errato" as wrong_argumets
+usecase "Gestione Inizializzazione variabile" as GIv
+
 
 usecase "Manipolazione Stack" as manipolazione
 usecase "Pulisci" as clear
@@ -27,16 +32,22 @@ usecase "<x" as copia
 usecase "+x" as sommaVar 
 usecase "-x" as diffVar 
 
+
+user --> inserisci
+inserisci --> wrong_argumets : <<includes>> 
+
+
 user  --> operazione
-user --> inserisci 
+operazione --> exc_ari : <<includes>>
 operazione --> add : <<inlcudes>>
 operazione --> minus : <<includes>>
 operazione --> multiply : <<includes>>
 operazione --> division : <<includes>>
 operazione --> sqrt : <<includes>>
-division --> exception : <<includes>>
+
 
 user --> manipolazione 
+manipolazione --> stack_empty : <<includes>>
 manipolazione --> clear : <<includes>>
 manipolazione --> drop : <<includes>>
 manipolazione --> dup : <<includes>>
@@ -44,8 +55,14 @@ manipolazione --> swap : <<includes>>
 manipolazione -->over : <<includes>>
 
 user --> Support 
+Support --> GIv : <<includes>>
+Support --> stack_empty : <<includes>>
 Support --> salva : <<includes>>
 Support --> copia : <<includes>>
 Support --> sommaVar : <<includes>>
 Support --> diffVar : <<includes>>
+
+
+
+
 @enduml
