@@ -3,24 +3,24 @@ skinparam actorStyle awesome
 skinparam shadowing true
 left to right direction
 
-actor "Inserisci Operazione" as IO 
-actor "Inserisci Numero" as IN 
-actor "Manipolazione Stack" as MS 
-actor "Operazioni sulle variabili" as OV 
+usecase "Inserisci Operazione" as IO 
+usecase "Inserisci Numero" as IN 
+usecase "Manipolazione Stack" as MS 
+usecase "Operazioni sulle variabili" as OV 
 
 usecase "Eccezione Aritmetica" as exc_ari 
 usecase "Eccezione Stack Vuoto" as stack_empty
 usecase "Eccezione Numero di argomenti errato" as wrong_argumets
 usecase "Eccezione Inizializzazione variabile" as GIv
 
-IN --> wrong_argumets : <<extends>>
+IN <-- wrong_argumets : <<extends>>
 
-IO --> exc_ari : <<extends>>
-IO --> stack_empty : <<extends>>
+IO <-- exc_ari : <<extends>>
+IO <-- stack_empty : <<extends>>
 
-MS --> stack_empty : <<extends>>
+MS <-- stack_empty : <<extends>>
 
-OV --> stack_empty : <<extends>>
-OV --> GIv : <<extends>>
+OV <-- stack_empty : <<extends>>
+OV <-- GIv : <<extends>>
 
 @enduml
