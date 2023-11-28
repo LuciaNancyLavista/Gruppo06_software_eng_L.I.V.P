@@ -2,7 +2,7 @@
 
 <ClassDiagram name="Calcolatrice">
   <ClassDiagramComponents>
-    <Class name="InserisciOperazione" package="" visibility="public" xPosition="50.0" yPosition="159.0">
+    <Class name="InserisciOperazione" package="" visibility="public" xPosition="442.0" yPosition="523.0">
       <Fields/>
       <Constructors/>
       <Methods>
@@ -30,25 +30,18 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="InserisciNumero" package="" visibility="public" xPosition="435.0" yPosition="138.0">
-      <Fields>
-        <Field name="c1" type="Complex" visibility="private"/>
-        <Field name="c2" type="Complex" visibility="private"/>
-      </Fields>
-      <Constructors/>
-      <Methods/>
-    </Class>
-    <Class name="ManipolazioneStack" package="" visibility="public" xPosition="685.0" yPosition="138.0">
+    <Class name="ManipolazioneStack" package="" visibility="public" xPosition="805.0" yPosition="523.0">
       <Fields/>
       <Constructors/>
       <Methods>
-        <Method name="drop" returnType="Complex" visibility="public"/>
-        <Method name="dup" returnType="Complex" visibility="public"/>
-        <Method name="clear" returnType="Complex" visibility="public"/>
-        <Method name="over" returnType="Complex" visibility="public"/>
+        <Method name="drop" returnType="void" visibility="public"/>
+        <Method name="dup" returnType="void" visibility="public"/>
+        <Method name="clear" returnType="void" visibility="public"/>
+        <Method name="over" returnType="void" visibility="public"/>
+        <Method name="swap" returnType="void" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="OperazioniVariabili" package="" visibility="public" xPosition="392.0" yPosition="327.0">
+    <Class name="OperazioniVariabili" package="" visibility="public" xPosition="1102.0" yPosition="452.0">
       <Fields/>
       <Constructors/>
       <Methods>
@@ -70,18 +63,67 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Utente" package="" visibility="public" xPosition="435.0" yPosition="7.0">
-      <Fields/>
-      <Constructors/>
-      <Methods/>
-    </Class>
-    <Class name="CUI" package="" visibility="public" xPosition="124.0" yPosition="27.0">
+    <Class name="CUI" package="" visibility="public" xPosition="679.0" yPosition="260.0">
       <Fields/>
       <Constructors/>
       <Methods>
-        <Method name="untitledMethod" returnType="void" visibility="public"/>
+        <Method name="launch" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="InserisciNumero" package="" visibility="public" xPosition="130.0" yPosition="452.0">
+      <Fields>
+        <Field name="c1" type="Complex" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="InserisciNumero" returnType="void" visibility="public">
+          <Argument type="Complex" name="c1"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Complex" package="" visibility="public" xPosition="130.0" yPosition="127.0">
+      <Fields>
+        <Field name="real" type="double" visibility="private"/>
+        <Field name="imaginary" type="double" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="Complex" returnType="void" visibility="public">
+          <Argument type="double" name="real"/>
+          <Argument type="double" name="imaginary"/>
+        </Method>
+        <Method name="setReal" returnType="double" visibility="public">
+          <Argument type="double" name="newReal"/>
+        </Method>
+        <Method name="setImaginary" returnType="double" visibility="public">
+          <Argument type="double" name="newImg"/>
+        </Method>
+        <Method name="getReal" returnType="double" visibility="public"/>
+        <Method name="getImaginary" returnType="double" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="StackNum" package="" visibility="public" xPosition="677.0" yPosition="50.0">
+      <Fields>
+        <Field name="stackNum" type="LinkedList" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="push" returnType="Object" visibility="public">
+          <Argument type="Object" name="obj"/>
+        </Method>
+        <Method name="top" returnType="Complex" visibility="public"/>
+        <Method name="stackPrint" returnType="void" visibility="public"/>
       </Methods>
     </Class>
   </ClassDiagramComponents>
-  <ClassDiagramRelations/>
+  <ClassDiagramRelations>
+    <UseRelation name="" source="CUI" target="InserisciOperazione" sourceCardinality="1..*" targetCardinality="1..1"/>
+    <UseRelation name="" source="CUI" target="InserisciNumero" sourceCardinality="1..*" targetCardinality="1..1"/>
+    <UseRelation name="" source="CUI" target="StackNum" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation name="" source="CUI" target="OperazioniVariabili" sourceCardinality="1..*" targetCardinality="1..1"/>
+    <UseRelation name="" source="InserisciNumero" target="Complex" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation name="" source="CUI" target="ManipolazioneStack" sourceCardinality="1..*" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
 </ClassDiagram>
