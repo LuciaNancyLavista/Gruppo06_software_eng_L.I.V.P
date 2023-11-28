@@ -1,0 +1,66 @@
+@startuml classDiagramm
+skinparam shadowing true
+
+class stackNum{
+    - LinkedList <> Stack
+    + push() : void 
+    + top() : Complex
+    + stackPrint() : void
+}
+
+class manipolazioneStack{
+    + drop() : void
+    + dup() : void
+    + clear() : void
+    + over() : void
+    + swap() : void
+}
+
+class CUI{
+    + launch(args) : void
+}
+
+class inserisciNumero{
+    - c1 : Complex
+    + Complex(Complex c1)
+}
+
+class complex{
+    - real : double
+    - imaginary : double
+    + Complex(double real,double imaginary)
+    + setReal(double newReal) : void 
+    + setImaginary(double newImaginary) : void
+    + getReal() : double
+    + getImaginary() : double
+    + toString() : String
+}
+
+class inserisciOperazioni{
+    + add(Complex c1, Complex c2) : Complex
+    + sub(Complex c1, Complex c2) : Complex
+    + mult(Complex c1,Complex c2) : Complex
+    + div(Complex c1, Complex c2) : Complex
+    + sqrt(Complex c) : Complex
+    + invSign(Complec c) : void
+}
+
+class operazioniVariabili{
+    + maggX(Complex c,String var) : void
+    + minX(Complex c, String var) : void
+    + plusX(String var) : Complex
+    + minus(String var) : Complex
+}
+
+
+CUI ..> inserisciOperazioni : 1..*
+CUI ..> inserisciNumero : 1..*
+inserisciNumero ..> complex : 1..1
+CUI ..> operazioniVariabili : 1..*
+CUI ..> stackNum : 1..1
+manipolazioneStack --|> stackNum
+
+
+
+
+@enduml
