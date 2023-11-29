@@ -39,12 +39,12 @@ class complex{
 }
 
 class inserisciOperazioni{
-    + add(Complex c1, Complex c2) : Complex
-    + sub(Complex c1, Complex c2) : Complex
-    + mult(Complex c1,Complex c2) : Complex
-    + div(Complex c1, Complex c2) : Complex
-    + sqrt(Complex c) : Complex
-    + invSign(Complec c) : Complex
+    + add(Complex c1, Complex c2) : void
+    + sub(Complex c1, Complex c2) : void 
+    + mult(Complex c1,Complex c2) : void
+    + div(Complex c1, Complex c2) : void
+    + sqrt(Complex c) : void
+    + invSign(Complec c) : void
 }
 
 class operazioniVariabili{
@@ -55,6 +55,25 @@ class operazioniVariabili{
     + minus(String var) : Complex
 }
 
+class Exception{
+    + print(msgError) : void
+}
+
+class emptyStackException{
+
+}
+
+class insertVariableException{
+
+}
+
+class wrongNumberException{
+
+}
+
+class arithmeticException{
+
+}
 
 
 CUI ..> stackNum : 1..1
@@ -64,4 +83,8 @@ inserisciOperazioni ..> stackNum : 1..1
 operazioniVariabili ..> stackNum : 1..1
 complex ..> inserisciNumero : 1..*
 
+emptyStackException --|> Exception
+insertVariableException --|> Exception
+wrongNumberException --|> Exception
+arithmeticException --|> Exception
 @enduml
