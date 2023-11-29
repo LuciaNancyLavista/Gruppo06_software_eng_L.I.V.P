@@ -1,0 +1,16 @@
+@startuml 
+
+skinparam Shadowing true
+
+title Operazione: duplicate - Sequence Diagram
+
+CUI -> ManipolazioneStack: duplicate
+activate ManipolazioneStack
+ManipolazioneStack -> StackNum: top
+activate StackNum
+StackNum --> ManipolazioneStack: top(OK)
+deactivate StackNum
+ManipolazioneStack -> StackNum : push
+deactivate ManipolazioneStack
+'!include ../../plantuml-styles/ae-copyright-footer.txt
+@endumlperazione

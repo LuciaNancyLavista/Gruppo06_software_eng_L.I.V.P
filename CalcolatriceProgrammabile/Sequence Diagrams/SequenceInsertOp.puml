@@ -22,9 +22,9 @@ StackNum --> ManipolazioneStack: removeLast(OK)
 deactivate StackNum
 ManipolazioneStack --> InserisciOperazione: drop(OK)
 deactivate ManipolazioneStack
-InserisciOperazione --> CUI: add(OK)
+InserisciOperazione -> StackNum: push
 deactivate InserisciOperazione
-CUI -> StackNum: push
+
 
 '!include ../../plantuml-styles/ae-copyright-footer.txt
 @endumlperazione
