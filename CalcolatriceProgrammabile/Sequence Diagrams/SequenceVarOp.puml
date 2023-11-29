@@ -1,0 +1,12 @@
+@startuml 
+skinparam Shadowing true
+
+title Operazione: duplicate - Sequence Diagram
+CUI -> InserisciVariabile: maggX
+activate InserisciVariabile
+InserisciVariabile -> StackNum: top
+activate StackNum
+StackNum -> InserisciVariabile: top(OK)
+deactivate StackNum
+deactivate InserisciVariabile 
+@endumlperazione

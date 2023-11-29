@@ -1,0 +1,30 @@
+@startuml 
+
+skinparam Shadowing true
+
+title Operazione: add - Sequence Diagram
+
+CUI -> InserisciOperazione: add
+activate InserisciOperazione
+InserisciOperazione -> ManipolazioneStack: drop
+activate ManipolazioneStack
+ManipolazioneStack -> StackNum: removeLast
+activate StackNum
+StackNum --> ManipolazioneStack: removeLast(OK)
+deactivate StackNum
+ManipolazioneStack --> InserisciOperazione: drop(OK)
+deactivate ManipolazioneStack
+InserisciOperazione -> ManipolazioneStack: drop
+activate ManipolazioneStack
+ManipolazioneStack -> StackNum: removeLast
+activate StackNum
+StackNum --> ManipolazioneStack: removeLast(OK)
+deactivate StackNum
+ManipolazioneStack --> InserisciOperazione: drop(OK)
+deactivate ManipolazioneStack
+InserisciOperazione -> StackNum: push
+deactivate InserisciOperazione
+
+
+'!include ../../plantuml-styles/ae-copyright-footer.txt
+@endumlperazione
