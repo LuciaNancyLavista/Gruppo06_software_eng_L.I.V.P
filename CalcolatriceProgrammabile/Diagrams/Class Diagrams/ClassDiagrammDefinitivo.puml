@@ -25,13 +25,14 @@ class CUI{
 
 class CalcController{
     - view : CalcView
-    + initButtons() : void
     + initActions() : void 
 }
 class CalcView{
     + buttons : Button[]
     + display : TextField
     + stack : TextField/Label : <<da decidere in corso di sviluppo>> 
+    + initButtons() : void
+    + placeButtons() : void 
 }
 
 class InserisciNumero{
