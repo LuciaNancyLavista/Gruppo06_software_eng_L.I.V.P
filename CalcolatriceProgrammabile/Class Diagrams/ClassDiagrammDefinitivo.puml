@@ -1,0 +1,91 @@
+@startuml classDiagramm
+skinparam shadowing true
+title Calculator Class Diagramm 
+
+note "Binding per la gestione delle eccezioni" as N1
+
+
+class stackNum<complex>{
+    - LinkedList <> stackNum
+    + push(Complex c) : void 
+    + top() : Complex
+    + drop() : Complex
+    + dup() : void
+    + clear() : void
+    + over() : void
+    + swap() : void
+    + toString() : String 
+    + stackFilter(stackNum s) : LinkedList<Complex>
+}
+
+
+
+class CUI{
+    + launch(args) : void
+}
+
+class CalcController{
+    - View : CalcView
+    + initButtons() : void
+    + initActions() : void 
+}
+class CalcView{
+    + buttons : Button[]
+    + display : TextField
+    + stack : TextField/Label : <<da decidere in corso di sviluppo>> 
+}
+
+class inserisciNumero{
+    + inserisci(String var,stackNum s) : Complex 
+}
+
+class complex{
+    - real : double
+    - imaginary : double
+    + Complex(double real,double imaginary)
+    + setReal(double newReal) : void 
+    + setImaginary(double newImaginary) : void
+    + getReal() : double
+    + getImaginary() : double
+    + toString() : String
+}
+
+class inserisciOperazioni{
+    + add(stackNum s) : void
+    + sub(stackNum s) : void 
+    + mult(stackNum s) : void
+    + div(stackNum s) : void
+    + sqrt(stackNum s) : void
+    + invSign(stackNum s) : void
+}
+
+class operazioniVariabili{
+    - LinkedHashMap <char k, Complex c> vars
+    + maggX(Complex c,String var) : void
+    + minX(Complex c, String var) : void
+    + plusX(String var) : Complex
+    + minus(String var) : Complex
+}
+
+CUI --> CalcController
+
+CalcController .. N1
+CUI .. N1
+
+CalcController --> inserisciOperazioni : <<use>>
+CalcController --> inserisciNumero : <<use>>
+CalcController --> stackNum : <<use>>
+CalcController --> operazioniVariabili : <<use>>
+CalcController o-- CalcView : <<has a>>
+
+
+inserisciNumero <--> complex
+
+
+operazioniVariabili --> stackNum : <<call>>
+inserisciOperazioni --> stackNum : <<call>>
+inserisciNumero --> stackNum : <<call>>
+
+
+
+@enduml
