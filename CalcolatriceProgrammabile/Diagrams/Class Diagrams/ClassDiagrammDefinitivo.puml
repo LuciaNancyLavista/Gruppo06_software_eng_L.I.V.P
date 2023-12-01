@@ -30,7 +30,7 @@ class CalcController{
 class CalcView{
     + buttons : Button[]
     + display : TextField
-    + stack : TextField/Label : <<da decidere in corso di sviluppo>> 
+    + stack : Label[] 
     + initButtons() : void
     + placeButtons() : void 
 }
