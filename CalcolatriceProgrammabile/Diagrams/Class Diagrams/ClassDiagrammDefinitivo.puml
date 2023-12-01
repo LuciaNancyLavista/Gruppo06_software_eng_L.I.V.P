@@ -5,7 +5,7 @@ title Calculator Class Diagramm
 note "Binding per la gestione delle eccezioni" as N1
 
 
-class stackNum<complex>{
+class StackNum<Complex>{
     - LinkedList <> stackNum
     + push(Complex c) : void 
     + top() : Complex
@@ -15,7 +15,6 @@ class stackNum<complex>{
     + over() : void
     + swap() : void
     + toString() : String 
-    + stackFilter(stackNum s) : LinkedList<Complex>
 }
 
 
@@ -25,7 +24,7 @@ class CUI{
 }
 
 class CalcController{
-    - View : CalcView
+    - view : CalcView
     + initButtons() : void
     + initActions() : void 
 }
@@ -35,11 +34,11 @@ class CalcView{
     + stack : TextField/Label : <<da decidere in corso di sviluppo>> 
 }
 
-class inserisciNumero{
-    + inserisci(String var,stackNum s) : Complex 
+class InserisciNumero{
+    + inserisci(String var,StackNum s) : Complex 
 }
 
-class complex{
+class Complex{
     - real : double
     - imaginary : double
     + Complex(double real,double imaginary)
@@ -50,21 +49,21 @@ class complex{
     + toString() : String
 }
 
-class inserisciOperazioni{
-    + add(stackNum s) : void
-    + sub(stackNum s) : void 
-    + mult(stackNum s) : void
-    + div(stackNum s) : void
-    + sqrt(stackNum s) : void
-    + invSign(stackNum s) : void
+class InserisciOperazioni{
+    + add(StackNum s) : void
+    + sub(StackNum s) : void 
+    + mult(StackNum s) : void
+    + div(StackNum s) : void
+    + sqrt(StackNum s) : void
+    + invSign(StackNum s) : void
 }
 
-class operazioniVariabili{
+class OperazioniVariabili{
     - LinkedHashMap <char k, Complex c> vars
     + maggX(Complex c,String var) : void
     + minX(Complex c, String var) : void
     + plusX(String var) : Complex
-    + minus(String var) : Complex
+    + lessX(String var) : Complex
 }
 
 CUI --> CalcController
@@ -72,19 +71,19 @@ CUI --> CalcController
 CalcController .. N1
 CUI .. N1
 
-CalcController --> inserisciOperazioni : <<use>>
-CalcController --> inserisciNumero : <<use>>
-CalcController --> stackNum : <<use>>
-CalcController --> operazioniVariabili : <<use>>
+CalcController --> InserisciOperazioni : <<use>>
+CalcController --> InserisciNumero : <<use>>
+CalcController --> StackNum : <<use>>
+CalcController --> OperazioniVariabili : <<use>>
 CalcController o-- CalcView : <<has a>>
 
 
-inserisciNumero <--> complex
+InserisciNumero <--> Complex
 
 
-operazioniVariabili --> stackNum : <<call>>
-inserisciOperazioni --> stackNum : <<call>>
-inserisciNumero --> stackNum : <<call>>
+OperazioniVariabili --> StackNum : <<call>>
+InserisciOperazioni --> StackNum : <<call>>
+InserisciNumero --> StackNum : <<call>>
 
 
 
