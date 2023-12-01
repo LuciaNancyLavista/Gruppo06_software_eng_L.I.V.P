@@ -4,9 +4,9 @@ start
 
 repeat
 : Inserisci numero complex;
-repeat while(2 inserimenti) is (yes)
-
 : Inserisci numero nello stack;
+repeat while(2 inserimenti) is (no)
+
 : Inserisci operazione;
 if(Operazione eseguita?) then (yes)
     : Aggiorna stack con risultato;
