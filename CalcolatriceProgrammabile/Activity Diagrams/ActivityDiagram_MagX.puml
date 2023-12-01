@@ -1,0 +1,21 @@
+@startuml ActivityDiagram_MagX
+
+start
+
+if(StackIsEmpty?) then (yes)
+    : StackIsEmptyException;
+else (no)
+    : Inserisci variabile ">x";
+    
+    if(Variabile inizializzata?) then (yes)
+        : Inserimento numero top in "x";
+        : Aggiorna stack;
+        : Visualizzazione grafica;
+    else (no)
+        : InsertVariableException;
+    endif
+endif
+
+stop
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml ActivityDiagram_Swap
+
+start
+
+if(NumStack < 2) then (yes)
+    : StackIsEmptyException;
+else (no)
+    : Inserisci "swap";
+    : Effettua scambio tra i due numeri;
+    : Aggiornamento stack;
+    
+endif
+
+
+stop
+
+@enduml

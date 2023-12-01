@@ -1,0 +1,19 @@
+@startuml ActivityDiagram_Inserimento 
+
+start
+
+repeat
+: Inserisci numero complex;
+repeat while(2 inserimenti) is (yes)
+
+: Inserisci numero nello stack;
+: Inserisci operazione;
+if(Operazione eseguita?) then (yes)
+    : Aggiorna stack con risultato;
+else (no)
+    : ArithmeticException;
+endif
+
+stop
+
+@enduml
