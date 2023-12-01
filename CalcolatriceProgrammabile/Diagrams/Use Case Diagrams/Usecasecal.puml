@@ -1,0 +1,54 @@
+@startuml calcolatrice
+skinparam actorStyle awesome
+skinparam shadowing true
+left to right direction
+
+actor "Utente" as user 
+
+usecase "Inserisci numero" as inserisci
+usecase "Inserisci operazione" as operazione
+usecase "Addizione" as add 
+usecase "Sottrazione" as minus
+usecase "Moltiplicazione" as multiply
+usecase "Divisione" as division
+usecase "Radice quadrata" as sqrt 
+usecase "Inverti segno" as invsign
+
+
+usecase "Manipolazione Stack" as manipolazione
+usecase "Pulisci" as clear
+usecase "Rimuovi Ultimo" as drop
+usecase "Duplica ultimo" as dup
+usecase "Scambia elementi" as swap
+usecase "Copia Penultimo Elemento" as over 
+
+usecase "Operazioni sulle variabili" as Support 
+usecase ">x" as salva 
+usecase "<x" as copia 
+usecase "+x" as sommaVar 
+usecase "-x" as diffVar 
+
+
+user --> inserisci
+
+user  --> operazione
+operazione --> add : <<inlcudes>>
+operazione --> minus : <<includes>>
+operazione --> multiply : <<includes>>
+operazione --> division : <<includes>>
+operazione --> sqrt : <<includes>>
+operazione --> invsign : <<includes>>
+
+user --> manipolazione 
+manipolazione --> clear : <<includes>>
+manipolazione --> drop : <<includes>>
+manipolazione --> dup : <<includes>>
+manipolazione --> swap : <<includes>>
+manipolazione -->over : <<includes>>
+
+user --> Support 
+Support --> salva : <<includes>>
+Support --> copia : <<includes>>
+Support --> sommaVar : <<includes>>
+Support --> diffVar : <<includes>>
+@enduml
