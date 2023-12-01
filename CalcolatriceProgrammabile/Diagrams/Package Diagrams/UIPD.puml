@@ -1,0 +1,7 @@
+@startuml
+package userInterfaceCalc{
+agent CUI
+agent CalcController
+agent CalcView
+}
+@enduml

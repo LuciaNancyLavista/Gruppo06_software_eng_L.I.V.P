@@ -1,0 +1,8 @@
+@startuml
+package exception{
+agent EmptyStackException
+agent ArithmeticException
+agent WrongNumberException
+agent InsertVariableException
+}
+@enduml
