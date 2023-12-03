@@ -8,7 +8,7 @@ package com.mycompany.calcolatriceprogrammabile;
  *
  * @author nancy
  */
-public class ArithmeticException extends FullException{
+public class ArithmeticException extends Exception{
 
     /**
      * Creates a new instance of <code>ArithmeticException</code> without detail
