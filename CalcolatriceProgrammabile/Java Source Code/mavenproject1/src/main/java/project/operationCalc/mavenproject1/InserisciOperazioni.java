@@ -8,7 +8,7 @@ package project.operationCalc.mavenproject1;
  *
  * @author Gabriele Imparato
  */
-public class InserisciOperazione {
+public class InserisciOperazioni {
 
     // class methods
     public void add(StackNum s){
@@ -65,7 +65,7 @@ public class InserisciOperazione {
 					   Math.sqrt((module-c.getReal())/2);
 	        }
         }else{
-            newReal = Math.sqrt(c.real);
+            newReal = Math.sqrt(c.getReal());
             newImg = 0;
         }
 	    s.push(new Complex(newReal, newImg));

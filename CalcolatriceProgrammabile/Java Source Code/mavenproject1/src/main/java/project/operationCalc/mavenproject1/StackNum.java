@@ -11,7 +11,7 @@ import java.util.LinkedList;
  * @author luigi
  */
 public class StackNum {
-    protected LinkedList<Integer> stack;
+    protected LinkedList<Complex> stack;
     
     
     public StackNum(){
