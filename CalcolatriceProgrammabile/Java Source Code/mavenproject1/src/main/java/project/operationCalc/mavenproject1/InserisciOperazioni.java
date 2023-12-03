@@ -41,15 +41,13 @@ public class InserisciOperazione {
         double newReal;
         double newImg;
             if(c2.getReal() != 0 && c2.getImaginary() != 0){
-                Complex num2 = new Complex(c2.getReal(),-c2.getImaginary());
-                Complex numerator = this.mult(c1,num2);
-                Complex denominator = this.mult(c2,num2);
-                newReal = numerator.getReal()/denominator.getReal();
-                newImg = numerator.getImaginary()/denominator.getReal();
+                double divReal = (c2.getReal() * c1.getReal() + c2.getImaginary() * c1.getImaginary()) / (c1.getReal() * c1.getReal() + c1.getImaginary() * c1.getImaginary());
+                double divImag = (c2.getImaginary() * c1.getReal() - c2.getReal() * c1.getImaginary()) / (c1.getReal() * c1.getReal() + c1.getImaginary() * c1.getImaginary());
+                Complex result = new Complex(divReal, divImag);
+                s.push(result);
             }else{
 		        throw new ArithmeticException();
             }
-        s.push(new Complex(newReal, newImg));
     }	
 
     public void sqrt(StackNum s){
