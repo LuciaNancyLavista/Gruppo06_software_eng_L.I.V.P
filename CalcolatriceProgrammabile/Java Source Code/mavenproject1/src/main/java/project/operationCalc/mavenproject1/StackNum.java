@@ -11,27 +11,27 @@ import java.util.LinkedList;
  * @author luigi
  */
 public class StackNum {
-    private LinkedList<Integer> stack;
+    protected LinkedList<Integer> stack;
     
     
     public StackNum(){
         stack = new LinkedList<>();
     }
     
-    public void push(int c){
+    public void push(Complex c){
         stack.add(c);
     }
     
-    public int top(){
+    public Complex top(){
         return stack.getLast();
     }
     
     public void dup(){
-        int temp = stack.getLast();
+        Complex temp = stack.getLast();
         stack.add(temp);    
     }
     
-    public int drop(){
+    public Complex drop(){
         return stack.removeLast();
     }
     
@@ -45,8 +45,8 @@ public class StackNum {
     }
    
     public void swap(){
-        int e1 = stack.removeLast();
-        int e2 = stack.removeLast();
+        Complex e1 = stack.removeLast();
+        Complex e2 = stack.removeLast();
         stack.add(e1);
         stack.add(e2);   
     }
