@@ -22,8 +22,8 @@ public class InserisciOperazioni {
     public void sub(StackNum s){
         Complex c1 = s.drop();
         Complex c2 = s.drop();
-        double newReal = c1.getReal() - c2.getReal();
-	    double newImg = c1.getImaginary() - c2.getImaginary();
+        double newReal = c2.getReal() - c1.getReal();
+	    double newImg = c2.getImaginary() - c1.getImaginary();
         s.push(new Complex(newReal,newImg));
     }
 
@@ -36,8 +36,8 @@ public class InserisciOperazioni {
     }
 
     public void div(StackNum s){
-        Complex c1 = s.drop();
         Complex c2 = s.drop();
+        Complex c1 = s.drop();
         double newReal;
         double newImg;
             if(c2.getReal() != 0 && c2.getImaginary() != 0){
