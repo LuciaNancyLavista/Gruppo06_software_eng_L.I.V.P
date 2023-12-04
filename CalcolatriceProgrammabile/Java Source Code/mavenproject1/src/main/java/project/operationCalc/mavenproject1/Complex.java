@@ -1,4 +1,5 @@
 package project.operationCalc.mavenproject1;
+import java.lang.Math;
 
 /**
  *
@@ -38,7 +39,7 @@ public class Complex {
 	boolean img = this.imaginary != 0;
 	String opr = (this.imaginary >0 && img ? "+" : " - ");
 	return (this.real != 0 ? this.real : "") + opr + 
-	       (this.imaginary != 0 ? "i" + this.abs(this.imaginary): "");
+	       (this.imaginary != 0 ? "i" + Math.abs(this.imaginary): "");
     }
 
 }

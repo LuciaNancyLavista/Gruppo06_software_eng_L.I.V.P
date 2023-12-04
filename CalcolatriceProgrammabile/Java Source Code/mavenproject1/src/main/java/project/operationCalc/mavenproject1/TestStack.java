@@ -18,12 +18,12 @@ public class TestStack {
         
         System.out.println("Test Push");
         for(int i =0;i<10;i++){
-            s.push(i+1);
+            s.push(new Complex(i,i+1));
         }
         System.out.println(s);
         
         System.out.println("Test drop");
-        int temp = s.drop();
+        Complex temp = s.drop();
         System.out.println("Elemento rimosso: " + temp);
         System.out.println(s);
         

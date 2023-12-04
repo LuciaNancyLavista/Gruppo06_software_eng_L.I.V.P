@@ -14,7 +14,7 @@ public class InserisciNumero {
         double newReal;
         double newImg;
 
-        string[] parameters = var.split(" ");
+        String[] parameters = var.split(" ");
         newReal = Double.parseDouble(parameters[1]);
         newImg  = Double.parseDouble(parameters[2]);
 
