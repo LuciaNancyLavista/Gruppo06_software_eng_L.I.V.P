@@ -18,8 +18,9 @@ public class TestStack {
         
         System.out.println("Test Push");
         for(int i =0;i<10;i++){
-            s.push(new Complex(i,i+1));
+            s.push(new Complex(i,i-1));
         }
+        s.push(new Complex(0,11));
         System.out.println(s);
         
         System.out.println("Test drop");

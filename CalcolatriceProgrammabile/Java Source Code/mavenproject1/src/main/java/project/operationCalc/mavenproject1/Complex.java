@@ -37,8 +37,8 @@ public class Complex {
     @Override
     public String toString(){
 	boolean img = this.imaginary != 0;
-	String opr = (this.imaginary >0 && img ? "+" : " - ");
-	return (this.real != 0 ? this.real : "") + opr + 
+	String opr = (this.imaginary >0  ? "+" : " - ");
+	return (this.real != 0 ? this.real : "") + (img ? opr : "") +  
 	       (this.imaginary != 0 ? "i" + Math.abs(this.imaginary): "");
     }
 
