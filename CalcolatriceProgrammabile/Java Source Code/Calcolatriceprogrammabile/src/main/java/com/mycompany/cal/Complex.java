@@ -37,18 +37,18 @@ public class Complex {
     @Override
     public String toString(){
 	StringBuffer sb = new StringBuffer();
-	String oprImag = (this.imaginary > 0 : " + " ? " - ");
-	boolean imgZero = this.imaginary != 0;
-	boolean realZero = this.real != 0;
+	String oprImag = (this.imaginary > 0 ? " + " : " - ");
+	boolean imgZero = this.imaginary == 0;
+	boolean realZero = this.real == 0;
 	if(imgZero && realZero)
-		return sb.append(0);
-	if(imgZero){
+		sb.append("0.0");
+        else if(imgZero){
 		sb.append(this.real);
-	}else if(imgReal){
+	}else if(realZero){
 		sb.append(this.imaginary);
 		sb.append("i");
 	}else{
-		String app = this.real + oprImag + this.imaginary + "i";
+		String app = this.real + oprImag + Math.abs(this.imaginary) + "i";
 		sb.append(app);
 	}
 	
