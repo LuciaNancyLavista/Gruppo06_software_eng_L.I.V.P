@@ -10,6 +10,7 @@ public class Complex {
     private double real;
     private double imaginary;
 
+	// costruttore della classe Complex
     public Complex(double real, double imaginary){
         this.real = real;
         this.imaginary = imaginary;
@@ -34,12 +35,15 @@ public class Complex {
     }
 
     // Override methods
+	// creazioen metodo toString per richiamano successivo a video della calcolatrice
     @Override
     public String toString(){
 	StringBuffer sb = new StringBuffer();
 	String oprImag = (this.imaginary > 0 ? " + " : " - ");
 	boolean imgZero = this.imaginary == 0;
 	boolean realZero = this.real == 0;
+
+	    // visione a video come double
 	if(imgZero && realZero)
 		sb.append("0.0");
         else if(imgZero){
