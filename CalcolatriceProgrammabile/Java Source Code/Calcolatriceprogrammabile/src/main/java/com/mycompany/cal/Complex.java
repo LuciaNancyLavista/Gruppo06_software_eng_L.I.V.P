@@ -36,10 +36,23 @@ public class Complex {
     // Override methods
     @Override
     public String toString(){
-	boolean img = this.imaginary != 0;
-	String opr = (this.imaginary >0  ? "+" : " - ");
-	return (this.real != 0 ? this.real : "") + (img ? opr : "") +  
-	       (this.imaginary != 0 ? Math.abs(this.imaginary) + "i" : "");
+	StringBuffer sb = new StringBuffer();
+	String oprImag = (this.imaginary > 0 : " + " ? " - ");
+	boolean imgZero = this.imaginary != 0;
+	boolean realZero = this.real != 0;
+	if(imgZero && realZero)
+		return sb.append(0);
+	if(imgZero){
+		sb.append(this.real);
+	}else if(imgReal){
+		sb.append(this.imaginary);
+		sb.append("i");
+	}else{
+		String app = this.real + oprImag + this.imaginary + "i";
+		sb.append(app);
+	}
+	
+	return sb.toString();
     }
 
 }
