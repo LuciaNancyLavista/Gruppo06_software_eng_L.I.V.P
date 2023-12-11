@@ -386,9 +386,6 @@ public class CalcController implements Initializable {
 
     @FXML
     private void LessX(ActionEvent event) throws EmptyStackException, InsertVariableException {
-        
-        //da rivedere oggi pomeriggio
-        
         String str = insert.getText();
         Complex c = opeVar.lessX(str);
         Text result = new Text();
@@ -414,8 +411,6 @@ public class CalcController implements Initializable {
 
     @FXML
     private void PlusX(ActionEvent event) throws InsertVariableException, EmptyStackException {
-        System.out.println("Capocchia");
-        //da rivedere oggi pomeriggio
         String str = insert.getText();
         Complex c = opeVar.plusX(str);
         Text result = new Text();
