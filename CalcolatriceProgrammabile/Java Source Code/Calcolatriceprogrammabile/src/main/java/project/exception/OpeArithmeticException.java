@@ -8,13 +8,13 @@ package project.exception;
  *
  * @author nancy
  */
-public class ArithmeticException extends Exception{
+public class OpeArithmeticException extends Exception{
 
     /**
      * Creates a new instance of <code>ArithmeticException</code> without detail
      * message.
      */
-    public ArithmeticException() {
+    public OpeArithmeticException() {
     }
 
     /**
@@ -23,7 +23,7 @@ public class ArithmeticException extends Exception{
      *
      * @param msg the detail message.
      */
-    public ArithmeticException(String msg) {
+    public OpeArithmeticException(String msg) {
         super(msg);
     }
 }

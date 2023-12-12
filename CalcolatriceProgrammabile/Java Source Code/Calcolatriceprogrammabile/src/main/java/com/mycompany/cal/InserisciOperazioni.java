@@ -4,6 +4,8 @@
  */
 package com.mycompany.cal;
 
+import project.exception.*;
+
 /**
  *
  * @author Gabriele Imparato
@@ -11,10 +13,10 @@ package com.mycompany.cal;
 public class InserisciOperazioni {
 
     // Implementazione metodo Addition: somma di due numeri complessi
-    public void add(StackNum s){
+    public void add(StackNum s) throws EmptyStackException{
 
 	// controllo se sono stati inseriti almeno 2 numeri richiamando l'eccezione sullo stack
-	if (s.stack.size() < 2) 
+	if (s.stackSize()< 2) 
             throw new EmptyStackException("Inserire almeno due numeri nello stack. ");
 
 	// prelevamento dallo stack
@@ -30,10 +32,10 @@ public class InserisciOperazioni {
     }
 
     // Implementazione metodo Substraction: sottrazione tra due numeri complessi
-    public void sub(StackNum s){
+    public void sub(StackNum s) throws EmptyStackException{
 
 	// controllo se sono stati inseriti almeno 2 numeri richiamando l'eccezione sullo stack
-	if (s.stack.size() < 2) 
+	if (s.stackSize() < 2) 
             throw new EmptyStackException("Inserire almeno due numeri nello stack. ");
 
 	// prelevamento dallo stack
@@ -49,10 +51,10 @@ public class InserisciOperazioni {
     }
 
 	// Implementazione metodo Multiplication: moltiplicazione di due numeri complessi
-    public void mult(StackNum s){
+    public void mult(StackNum s) throws EmptyStackException{
 
 	// controllo se sono stati inseriti almeno 2 numeri richiamando l'eccezione sullo stack
-	if (s.stack.size() < 2) 
+	if (s.stackSize()< 2) 
             throw new EmptyStackException("Inserire almeno due numeri nello stack. ");
 
 	// prelevamento dallo stack
@@ -68,10 +70,10 @@ public class InserisciOperazioni {
     }
 
     // Implementazione metodo Division: divisione tra due numeri complessi
-    public void div(StackNum s){
+    public void div(StackNum s) throws EmptyStackException,OpeArithmeticException{
 
 	// controllo se sono stati inseriti almeno 2 numeri richiamando l'eccezione sullo stack
-	if (s.stack.size() < 2) 
+	if (s.stackSize() < 2) 
             throw new EmptyStackException("Inserire almeno due numeri nello stack. ");
 
 	// prelevamento dallo stack
@@ -80,7 +82,7 @@ public class InserisciOperazioni {
 
 	// se la parte immaginare del divisore è uguale a 0 allora lancio l'eccezione aritmetica
 	if (c2.getImaginary() == 0) 
-            throw new ArithmeticException("Errore: Divisione per zero. ");
+            throw new OpeArithmeticException("Errore: Divisione per zero. ");
 	    
 	// divido in parte reale ed immaginaria così da poter effettuare la divisione 
 	double zreal = 0;
@@ -103,10 +105,10 @@ public class InserisciOperazioni {
     }	
 
 	// Implementazione metodo Square Root: radice quadrata di un numero complesso
-    public void sqrt(StackNum s){
+    public void sqrt(StackNum s) throws EmptyStackException{
 
 	// controllo se lo stack è vuoto (ci serve solo un numero per sqrt) lanciando l'eccezione che riguarda lo stack
-	if (s.stack.isEmpty()) 
+	if (s.isEmpty()) 
             throw new EmptyStackException("Stack vuoto: serve almeno un numero. ");
 
 	// prelevamento dallo stack
@@ -136,10 +138,10 @@ public class InserisciOperazioni {
     }
 
 	// Implementazione metodo Inversion Sign: inversione del segno di un numero complesso
-    public void invSign(StackNum s){
+    public void invSign(StackNum s) throws EmptyStackException{
 
 	// controllo se lo stack è vuoto (visto che ci serve solo un numero per questa operazione) lanciando un'eccezione sullo stack
-	if (s.stack.isEmpty()) 
+	if (s.isEmpty()) 
 	    throw new EmptyStackException("Stack vuoto: serve almeno un numero. ");
 
 	// prelevamento dallo stack

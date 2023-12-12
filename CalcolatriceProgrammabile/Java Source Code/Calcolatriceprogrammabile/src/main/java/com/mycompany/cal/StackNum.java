@@ -66,6 +66,11 @@ public class StackNum {
     public boolean isEmpty(){
         return stack.isEmpty();
     }
+    
+    //metodo stackSize per controllare la dimensione dello stack
+    public int stackSize(){
+        return stack.size();
+    }
 
     // metodo toString per la stampa dello stack
     @Override
