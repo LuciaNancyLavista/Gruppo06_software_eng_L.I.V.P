@@ -13,12 +13,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import com.mycompany.cal.*;
-import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.text.Font;
 import project.exception.EmptyStackException;
 import project.exception.InsertVariableException;
+import project.exception.OpeArithmeticException;
 
 /**
  * FXML Controller class
@@ -181,20 +183,72 @@ public class CalcController implements Initializable {
         
         spazio.setOnAction(event3->Spazio(event3));
         
-        uguale.setOnAction(event4 -> Uguale(event4));
+        uguale.setOnAction(event4 -> {
+            try {
+                Uguale(event4);
+            } catch (Exception ex) {
+                exception.setText("");
+                exception.setText("Errore,numero di parametri errato");
+            }
+        });
         
         //setOnAction dei pulsanti delle operazioni basilari
-        add.setOnAction(event6 -> Addition(event6));
+        add.setOnAction(event6 -> {
+            try {
+                Addition(event6);
+            } catch (EmptyStackException ex) {
+                exception.setText("");
+                exception.setText("Non ci sono abbastanza valori nello stack"); 
+            }
+        });
         
-        min.setOnAction(event7 -> Minus(event7));
+        min.setOnAction(event7 -> {
+            try {
+                Minus(event7);
+            } catch (EmptyStackException ex) {
+                exception.setText("");
+                exception.setText("Non ci sono abbastanza valori nello stack");
+            }
+        });
         
-        mult.setOnAction(event8 -> Multiply(event8));
+        mult.setOnAction(event8 -> {
+            try {
+                Multiply(event8);
+            } catch (EmptyStackException ex) {
+                exception.setText("");
+                exception.setText("Non ci sono abbastanza valori nello stack");
+            }
+        });
         
-        div.setOnAction(event9 -> Division(event9));
+        div.setOnAction(event9 -> {
+            try {
+                Division(event9);
+            } catch (EmptyStackException ex) {
+                exception.setText("");
+                exception.setText("Non ci sono abbastanza valori nello stack");
+            } catch (OpeArithmeticException ex) {
+                exception.setText("");
+                exception.setText("Operazione Aritmetica impossibile");
+            }
+        });
         
-        SQRT.setOnAction(event10 -> Radix(event10));
+        SQRT.setOnAction(event10 -> {
+            try {
+                Radix(event10);
+            } catch (EmptyStackException ex) {
+                exception.setText("");
+                exception.setText("Non ci sono abbastanza valori nello stack"); 
+            }
+        });
         
-        invSign.setOnAction(event11 -> InvSign(event11));
+        invSign.setOnAction(event11 -> {
+            try {
+                InvSign(event11);
+            } catch (EmptyStackException ex) {
+                exception.setText("");
+                exception.setText("Non ci sono abbastanza valori nello stack"); 
+            }
+        });
         
         //setOnAction dei pulsanti di manipolazione dello stack
         clear.setOnAction(event5 -> Clear(event5));
@@ -214,6 +268,10 @@ public class CalcController implements Initializable {
             } catch (EmptyStackException ex) {
                 exception.setText("");
                 exception.setText("Stack vuoto");
+            }catch(Exception ex){
+                exception.setText("");
+                exception.setText("Campo degli inserimenti vuoto");
+                
             }
         });
         
@@ -223,6 +281,9 @@ public class CalcController implements Initializable {
             } catch (InsertVariableException ex) {
                 exception.setText("");
                 exception.setText("Variabile non inizializzata");
+            }catch(Exception ex){
+                exception.setText("");
+                exception.setText("Campo degli inserimenti vuoto");
             }
         });
         
@@ -235,6 +296,9 @@ public class CalcController implements Initializable {
             } catch (EmptyStackException ex) {
                 exception.setText("");
                 exception.setText("Stack Vuoto");
+            }catch(Exception ex){
+                exception.setText("");
+                exception.setText("Campo degli inserimenti vuoto");
             }
         });
         
@@ -247,6 +311,9 @@ public class CalcController implements Initializable {
             } catch (InsertVariableException ex) {
                 exception.setText("");
                 exception.setText("Variabile non inizializzata");
+            }catch(Exception ex){
+                exception.setText("");
+                exception.setText("Campo degli inserimenti vuoto");
             }
         });
         
@@ -276,8 +343,11 @@ public class CalcController implements Initializable {
     }
     
     @FXML
-    private void Uguale(ActionEvent event){
+    private void Uguale(ActionEvent event) throws Exception{
         String seq = insert.getText();
+        if(seq.isEmpty() || seq.length() <3)
+            throw new Exception();
+        exception.setText("");
         inserisci.inserisci(seq, stackNum);
         Text stack = new Text();
         stack.setFont(new Font(20));
@@ -289,7 +359,7 @@ public class CalcController implements Initializable {
     
     //Operazioni Basilari
     @FXML
-    private void Division(ActionEvent event) {
+    private void Division(ActionEvent event) throws EmptyStackException, OpeArithmeticException {
         ope.div(stackNum);
         Text result = new Text();
         for(int i =0;i<2;i++){
@@ -302,7 +372,7 @@ public class CalcController implements Initializable {
     }
 
     @FXML
-    private void Multiply(ActionEvent event) {
+    private void Multiply(ActionEvent event) throws EmptyStackException {
         ope.mult(stackNum);
         Text result = new Text();
         for(int i =0;i<2;i++){
@@ -315,7 +385,7 @@ public class CalcController implements Initializable {
     }
 
     @FXML
-    private void Addition(ActionEvent event) {
+    private void Addition(ActionEvent event) throws EmptyStackException {
         ope.add(stackNum);
         Text result = new Text();
         for(int i =0;i<2;i++){
@@ -328,7 +398,7 @@ public class CalcController implements Initializable {
     }
 
     @FXML
-    private void Minus(ActionEvent event) {
+    private void Minus(ActionEvent event) throws EmptyStackException {
         ope.sub(stackNum);
         Text result = new Text();
         for(int i =0;i<2;i++){
@@ -341,7 +411,7 @@ public class CalcController implements Initializable {
     }
 
     @FXML
-    private void Radix(ActionEvent event) {
+    private void Radix(ActionEvent event) throws EmptyStackException {
         ope.sqrt(stackNum);
         Text result1,result2;
         result1 = new Text();
@@ -350,17 +420,18 @@ public class CalcController implements Initializable {
         result2.setFont(new Font(20));
         vbox.getChildren().remove(0);
         
-        result1.setText(stackNum.top().toString());
-        ope.invSign(stackNum);
+        Complex c = stackNum.drop();
+        result1.setText(c.toString());
         result2.setText(stackNum.top().toString());
+        stackNum.push(c);
         
-        vbox.getChildren().add(0,result1);
         vbox.getChildren().add(0,result2);
+        vbox.getChildren().add(0,result1);
         System.out.println(stackNum);
     }
 
     @FXML
-    private void InvSign(ActionEvent event) {
+    private void InvSign(ActionEvent event) throws EmptyStackException {
         ope.invSign(stackNum);
         Text result = new Text();
         vbox.getChildren().remove(0);
@@ -372,21 +443,28 @@ public class CalcController implements Initializable {
     
     //Operazioni sulle variabili
     @FXML
-    private void MaggX(ActionEvent event) throws EmptyStackException {
+    private void MaggX(ActionEvent event) throws EmptyStackException,Exception{
         String var = insert.getText();
+        if(var.equals("")){
+            throw new Exception();
+        }
         opeVar.maggX(var);
         Text varResult = new Text();
         varResult.setFont(new Font(15));
-        varResult.setText(var + " = " + stackNum.top().toString());
+        varResult.setText(var.charAt(var.length()-1) + " = " + stackNum.top().toString());
         VarBox.getChildren().add(0,varResult);
         insert.setText("");
         //System.out.println(opeVar.vars.toString());
         System.out.println(stackNum);
     }
-
+    
+    //aggiungere le eccezioni e iniziare a fare screen codici
     @FXML
-    private void LessX(ActionEvent event) throws EmptyStackException, InsertVariableException {
+    private void LessX(ActionEvent event) throws EmptyStackException, InsertVariableException, Exception {
         String str = insert.getText();
+        if(str.equals("")){
+            throw new Exception();
+        }
         Complex c = opeVar.lessX(str);
         Text result = new Text();
         result.setFont(new Font(15));
@@ -399,8 +477,11 @@ public class CalcController implements Initializable {
     }
 
     @FXML
-    private void MinX(ActionEvent event) throws InsertVariableException{
+    private void MinX(ActionEvent event) throws InsertVariableException, Exception{
         String str = insert.getText();
+        if(str.equals("")){
+            throw new Exception();
+        }
         opeVar.minX(str);
         System.out.println(stackNum);
         Text var = new Text();
@@ -410,8 +491,11 @@ public class CalcController implements Initializable {
     }
 
     @FXML
-    private void PlusX(ActionEvent event) throws InsertVariableException, EmptyStackException {
+    private void PlusX(ActionEvent event) throws InsertVariableException, EmptyStackException, Exception {
         String str = insert.getText();
+        if(str.equals("")){
+            throw new Exception();
+        }
         Complex c = opeVar.plusX(str);
         Text result = new Text();
         result.setFont(new Font(15));
@@ -485,7 +569,7 @@ public class CalcController implements Initializable {
     
     
     
-    //Sezione di Inizializzazione dei Pulsanti da sposatare in una classe apposita;
+    //Sezione di Inizializzazione dei Pulsanti
     private void initNumbers(Button[] butt){
         butt[0] = num0;
         butt[1] = num1;
@@ -528,28 +612,4 @@ public class CalcController implements Initializable {
         btn[24] = y;
         btn[25] = z;
     }
-    /*
-    private void initVar(Button[] buts){
-        buts[0] = maggX;
-        buts[1] = lessX;
-        buts[2] = minX;
-        buts[3] = plusX;
-    }
-    
-    private void initOpe(Button[] btns){
-        btns[0] = div;
-        btns[1] = mult;
-        btns[2] = add;
-        btns[3] = min;
-        btns[4] = invSign;
-        btns[5] = SQRT;
-    }
-    private void initSButton(Button[] sbut){
-        sbut[0] = clear;
-        sbut[1] = dup;
-        sbut[2] = drop;
-        sbut[3] = swap;
-        sbut[4] = over;
-    }
-*/
 }

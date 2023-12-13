@@ -15,7 +15,8 @@ public class InserisciOperazioni {
     // Implementazione metodo Addition: somma di due numeri complessi
     public void add(StackNum s) throws EmptyStackException{
 
-	// controllo se sono stati inseriti almeno 2 numeri richiamando l'eccezione sullo stack
+	// controllo se sono stati inseriti almeno 2 numeri 
+    // richiamando l'eccezione sullo stack
 	if (s.stackSize()< 2) 
             throw new EmptyStackException("Inserire almeno due numeri nello stack. ");
 
@@ -81,9 +82,9 @@ public class InserisciOperazioni {
         Complex c1 = s.drop();
 
 	// se la parte immaginare del divisore è uguale a 0 allora lancio l'eccezione aritmetica
-	if (c2.getImaginary() == 0) 
+	if (c2.getImaginary() == 0 && c2.getReal() == 0) 
             throw new OpeArithmeticException("Errore: Divisione per zero. ");
-	    
+	   
 	// divido in parte reale ed immaginaria così da poter effettuare la divisione 
 	double zreal = 0;
 	double zimag = 0;
@@ -94,8 +95,8 @@ public class InserisciOperazioni {
         
 	double ac = c1.getReal()*c2.getReal();
 	double bd = c1.getImaginary()*c2.getImaginary();
-	double bc = c1.getReal()*c2.getReal();
-	double ad = c1.getImaginary()*c2.getImaginary();
+	double bc = c1.getImaginary()*c2.getReal();
+	double ad = c1.getReal()*c2.getImaginary();
 
 	double newReal = (ac+bd)/(zreal+zimag);
 	double newImag = (bc-ad)/(zreal+zimag);
@@ -104,37 +105,32 @@ public class InserisciOperazioni {
 	s.push(new Complex(newReal,newImag));
     }	
 
-	// Implementazione metodo Square Root: radice quadrata di un numero complesso
+    // Implementazione metodo Square Root: radice quadrata di un numero complesso
     public void sqrt(StackNum s) throws EmptyStackException{
-
-	// controllo se lo stack è vuoto (ci serve solo un numero per sqrt) lanciando l'eccezione che riguarda lo stack
-	if (s.isEmpty()) 
-            throw new EmptyStackException("Stack vuoto: serve almeno un numero. ");
-
-	// prelevamento dallo stack
+        if(s.isEmpty())
+            throw new EmptyStackException();
         Complex c = s.drop();
-
-	// assegnazione di reale ed immaginario per poter effettuare la radice quadrata
-	double newReal;
-        double newImg;
-        if(c.getImaginary() != 0){
-            if(c.getReal() < 0){
-                newImg = Math.sqrt(Math.abs(c.getReal()));
-		        newReal = 0;
-		    }else{
-                    double module = Math.sqrt((c.getReal()*c.getReal()) + (c.getImaginary()*c.getImaginary()));
-                    newReal = Math.sqrt(Math.sqrt(module+c.getReal())/2);
-                    newImg =(c.getImaginary()/Math.abs(c.getImaginary()))*
-					   Math.sqrt((module-c.getReal())/2);
-	        }
+        double newReal = 0;
+        double newImg = 0;
+        double a = c.getReal();
+        double b = c.getImaginary();
+        //double newReal = Math.sqrt((Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)) + a) / 2);
+        //double newImg = Math.signum(b) * Math.sqrt((Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)) - a) / 2);
+        
+        if(b != 0){
+            double module = Math.sqrt(a*a + b*b);
+            newReal = Math.sqrt((module+a)/2);
+            newImg =Math.signum(b)*Math.sqrt((module-a)/2);
+        }else if(b == 0 && a < 0){
+            newReal = 0;
+            newImg = Math.sqrt(Math.abs(a));
         }else{
-            newReal = Math.sqrt(c.getReal());
+            newReal = Math.sqrt(a);
             newImg = 0;
         }
-	    // scrittura nello stack, sono due risultati visto che la radice quadrata ritorna due soluzioni
-	    s.push(new Complex(newReal, newImg));
-            s.push(new Complex(newReal, newImg));
-            
+        
+        s.push(new Complex(newReal,newImg));
+        s.push(new Complex(-newReal, -newImg));
     }
 
 	// Implementazione metodo Inversion Sign: inversione del segno di un numero complesso

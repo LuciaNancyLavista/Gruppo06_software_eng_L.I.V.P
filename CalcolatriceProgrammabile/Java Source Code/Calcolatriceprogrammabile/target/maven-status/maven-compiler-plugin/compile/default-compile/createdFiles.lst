@@ -1,8 +1,12 @@
-project\exception\ArithmeticException.class
+com\mycompany\cal\Complex.class
 com\mycompany\cal\TestStack.class
 project\exception\WrongNumberException.class
 project\exception\EmptyStackException.class
+com\mycompany\cal\StackNum.class
 com\mycompany\calcolatriceprogrammabile\CalcController.class
 project\exception\InsertVariableException.class
+project\exception\OpeArithmeticException.class
 com\mycompany\calcolatriceprogrammabile\App.class
+com\mycompany\cal\InserisciNumero.class
 com\mycompany\cal\OperazioniVariabili.class
+com\mycompany\cal\InserisciOperazioni.class
