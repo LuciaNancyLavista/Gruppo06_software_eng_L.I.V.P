@@ -149,7 +149,7 @@ public class CalcController implements Initializable {
     @FXML
     private ListView<String> vbox;
     @FXML
-    private VBox VarBox;
+    private ListView<String> VarBox;
     @FXML
     private TextField exception;
     @FXML
@@ -165,6 +165,8 @@ public class CalcController implements Initializable {
     private OperazioniVariabili opeVar = new OperazioniVariabili(stackNum);
     
     ObservableList<String> stack = FXCollections.observableArrayList();
+    ObservableList<String> variabili = FXCollections.observableArrayList();
+    
     /**
      * Initializes the controller class.
      * @param url
@@ -178,6 +180,7 @@ public class CalcController implements Initializable {
         
         //settaggio del colore per lo stack grafico
         vbox.setStyle("-fx-control-inner-background: #ac9eff;");
+        VarBox.setStyle("-fx-control-inner-background: #ac9eff;");
         
         //binding per i pulsanti dello stack
         dup.disableProperty().bind(Bindings.isEmpty(stack));
@@ -187,6 +190,9 @@ public class CalcController implements Initializable {
         
         //collegamento alla lista osservabile(stack)
         vbox.setItems(stack);
+        
+        //collegamento alla lista osservabile(variabli)
+        VarBox.setItems(variabili);
         
         //setOnAction dei pulsanti di utility
         for(int i=0;i<buttonletters.length;i++){
@@ -460,10 +466,7 @@ public class CalcController implements Initializable {
             throw new Exception();
         }
         opeVar.maggX(var);
-        Text varResult = new Text();
-        varResult.setFont(new Font(15));
-        varResult.setText(var.charAt(var.length()-1) + " = " + stackNum.top().toString());
-        VarBox.getChildren().add(0,varResult);
+        variabili.add(0,var.charAt(var.length()-1) + " = " + stackNum.top().toString());
         insert.setText("");
         System.out.println(stackNum);
     }
@@ -476,11 +479,9 @@ public class CalcController implements Initializable {
             throw new Exception();
         }
         Complex c = opeVar.lessX(str);
-        Text result = new Text();
-        result.setFont(new Font(15));
-        result.setText(str + "=" + c.toString());
-        VarBox.getChildren().remove(0);
-        VarBox.getChildren().add(0,result);
+
+        variabili.remove(0);
+        variabili.add(0,str + "=" + c.toString());
         System.out.println(stackNum);
         
     }
@@ -507,17 +508,14 @@ public class CalcController implements Initializable {
             throw new Exception();
         }
         Complex c = opeVar.plusX(str);
-        Text result = new Text();
-        result.setFont(new Font(15));
-        result.setText(str + "=" + c);
-        VarBox.getChildren().remove(0);
-        VarBox.getChildren().add(0,result);
+        variabili.remove(0);
+        variabili.add(0,str + "=" + c);
         System.out.println(stackNum); 
     }
     
     @FXML
     private void ClearVariable(ActionEvent event) {
-        VarBox.getChildren().clear();
+        variabili.clear();
     }
     
     //Operazioni di Manipolazione dello Stack
