@@ -13,10 +13,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import com.mycompany.cal.*;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import project.exception.EmptyStackException;
 import project.exception.InsertVariableException;
@@ -25,15 +25,12 @@ import project.exception.OpeArithmeticException;
 /**
  * FXML Controller class
  *
- * @author nancy
+ * @author Gruppo06
  */
 public class CalcController implements Initializable {
     
     private Button[] buttonNum = new Button[11];
     private Button[] buttonletters = new Button[26];
-    //private Button[] buttonStack = new Button[5];
-    //private Button[] buttonOpe = new Button[6];
-    //private Button[] buttonVar = new Button[4];
     
     @FXML
     private TextField insert;
@@ -146,11 +143,13 @@ public class CalcController implements Initializable {
     @FXML
     private Button spazio;
     @FXML
-    private VBox vbox;
+    private ListView<String> vbox;
     @FXML
     private VBox VarBox;
     @FXML
     private TextField exception;
+    @FXML
+    private Button clrVar;
     
     //instanza delle classi 
     private StackNum stackNum = new StackNum();
@@ -160,6 +159,8 @@ public class CalcController implements Initializable {
     private InserisciOperazioni ope = new InserisciOperazioni();
     
     private OperazioniVariabili opeVar = new OperazioniVariabili(stackNum);
+    
+    ObservableList<String> stack = FXCollections.observableArrayList();
     /**
      * Initializes the controller class.
      * @param url
@@ -169,9 +170,8 @@ public class CalcController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         initLetters(buttonletters);
         initNumbers(buttonNum);
-        //initVar(buttonVar);
-        //initOpe(buttonOpe);
-        //initSButton(buttonStack);
+        
+        vbox.setStyle("-fx-control-inner-background: #ac9eff;");
         
         //setOnAction dei pulsanti di utility
         for(int i=0;i<buttonletters.length;i++){
@@ -317,6 +317,8 @@ public class CalcController implements Initializable {
             }
         });
         
+        clrVar.setOnAction(event20 -> ClearVariable(event20));
+        
     }    
     
     //Funzioni Base della Calcolatrice
@@ -349,10 +351,8 @@ public class CalcController implements Initializable {
             throw new Exception();
         exception.setText("");
         inserisci.inserisci(seq, stackNum);
-        Text stack = new Text();
-        stack.setFont(new Font(20));
-        stack.setText(stackNum.top().toString());
-        vbox.getChildren().add(0,stack);
+        stack.add(0,stackNum.top().toString());
+        vbox.setItems(stack);
         insert.setText("");
         System.out.println(stackNum);
     }
@@ -361,84 +361,73 @@ public class CalcController implements Initializable {
     @FXML
     private void Division(ActionEvent event) throws EmptyStackException, OpeArithmeticException {
         ope.div(stackNum);
-        Text result = new Text();
         for(int i =0;i<2;i++){
-            vbox.getChildren().remove(0);
+            stack.remove(0);    
         }
-        result.setFont(new Font(20));
-        result.setText(stackNum.top().toString());
-        vbox.getChildren().add(0,result);
+        stack.add(0,stackNum.top().toString());
+        vbox.setItems(stack);
         System.out.println(stackNum);
     }
 
     @FXML
     private void Multiply(ActionEvent event) throws EmptyStackException {
         ope.mult(stackNum);
-        Text result = new Text();
         for(int i =0;i<2;i++){
-            vbox.getChildren().remove(0);
+            stack.remove(0);
         }
-        result.setFont(new Font(20));
-        result.setText(stackNum.top().toString());
-        vbox.getChildren().add(0,result);
+        stack.add(0,stackNum.top().toString());
+        vbox.setItems(stack);
         System.out.println(stackNum);
+        
     }
 
     @FXML
     private void Addition(ActionEvent event) throws EmptyStackException {
         ope.add(stackNum);
-        Text result = new Text();
         for(int i =0;i<2;i++){
-            vbox.getChildren().remove(0);
+            stack.remove(0);
         }
-        result.setFont(new Font(20));
-        result.setText(stackNum.top().toString());
-        vbox.getChildren().add(0,result);
+        
+        stack.add(0,stackNum.top().toString());
+        vbox.setItems(stack);
         System.out.println(stackNum);
+        
     }
 
     @FXML
     private void Minus(ActionEvent event) throws EmptyStackException {
         ope.sub(stackNum);
-        Text result = new Text();
         for(int i =0;i<2;i++){
-            vbox.getChildren().remove(0);
+            stack.remove(0);
         }
-        result.setFont(new Font(20));
-        result.setText(stackNum.top().toString());
-        vbox.getChildren().add(0,result);
+        stack.add(0,stackNum.top().toString());
+        vbox.setItems(stack);
         System.out.println(stackNum);
     }
 
     @FXML
     private void Radix(ActionEvent event) throws EmptyStackException {
         ope.sqrt(stackNum);
-        Text result1,result2;
-        result1 = new Text();
-        result2 = new Text();
-        result1.setFont(new Font(20));
-        result2.setFont(new Font(20));
-        vbox.getChildren().remove(0);
+        
+        stack.remove(0);
         
         Complex c = stackNum.drop();
-        result1.setText(c.toString());
-        result2.setText(stackNum.top().toString());
+        stack.add(0,stackNum.top().toString());
+        stack.add(0,c.toString());
         stackNum.push(c);
         
-        vbox.getChildren().add(0,result2);
-        vbox.getChildren().add(0,result1);
+        vbox.setItems(stack);
         System.out.println(stackNum);
+        
     }
 
     @FXML
     private void InvSign(ActionEvent event) throws EmptyStackException {
         ope.invSign(stackNum);
-        Text result = new Text();
-        vbox.getChildren().remove(0);
-        result.setFont(new Font(20));
-        result.setText(stackNum.top().toString());
-        vbox.getChildren().add(0,result);
-        System.out.println(stackNum);     
+        stack.remove(0);
+        stack.add(0,stackNum.top().toString());
+        vbox.setItems(stack);
+        System.out.println(stackNum); 
     }
     
     //Operazioni sulle variabili
@@ -454,7 +443,6 @@ public class CalcController implements Initializable {
         varResult.setText(var.charAt(var.length()-1) + " = " + stackNum.top().toString());
         VarBox.getChildren().add(0,varResult);
         insert.setText("");
-        //System.out.println(opeVar.vars.toString());
         System.out.println(stackNum);
     }
     
@@ -471,7 +459,6 @@ public class CalcController implements Initializable {
         result.setText(str + "=" + c.toString());
         VarBox.getChildren().remove(0);
         VarBox.getChildren().add(0,result);
-        //System.out.println(opeVar.vars.toString());
         System.out.println(stackNum);
         
     }
@@ -487,7 +474,9 @@ public class CalcController implements Initializable {
         Text var = new Text();
         var.setFont(new Font(20));
         var.setText(stackNum.top().toString());
-        vbox.getChildren().add(0,var);    
+        stack.add(0,var.getText());
+        vbox.setItems(stack);
+        
     }
 
     @FXML
@@ -502,73 +491,63 @@ public class CalcController implements Initializable {
         result.setText(str + "=" + c);
         VarBox.getChildren().remove(0);
         VarBox.getChildren().add(0,result);
-        //System.out.println(opeVar.vars.toString());
         System.out.println(stackNum); 
+    }
+    
+    @FXML
+    private void ClearVariable(ActionEvent event) {
+        VarBox.getChildren().clear();
     }
     
     //Operazioni di Manipolazione dello Stack
     @FXML
     private void Clear(ActionEvent event){
         stackNum.clear();
-        vbox.getChildren().clear();
+        stack.clear();
+        vbox.setItems(stack);
         System.out.println("Clear");
     }
     
     @FXML
     private void Dup(ActionEvent event) {
-        Text result = new Text();
-        result.setFont(new Font(20));
-        result.setText(stackNum.top().toString());
-        vbox.getChildren().add(0,result);
+        stack.add(0,stackNum.top().toString());
+        vbox.setItems(stack);
         stackNum.dup();
         System.out.println(stackNum);
-        
-        
     }
-
+    
     @FXML
     private void Drop(ActionEvent event) {
-        Text result = new Text();
-        result.setFont(new Font(20));
-        vbox.getChildren().remove(0);
+        stack.remove(0);
+        vbox.setItems(stack);
         stackNum.drop();
         System.out.println(stackNum);
-        
     }
 
     @FXML
     private void Over(ActionEvent event) {
         stackNum.over();
-        Text result = new Text();
-        result.setFont(new Font(20));
-        result.setText(stackNum.top().toString());
-        vbox.getChildren().add(0,result);
+        stack.add(0,stackNum.top().toString());
+        vbox.setItems(stack);
         System.out.println(stackNum);
     }
 
     @FXML
     private void Swap(ActionEvent event) {
-        Text result1,result2;
-        result1 = new Text();
-        result2 = new Text();
-        result1.setFont(new Font(20));
-        result2.setFont(new Font(20));
-        
-        result1.setText(stackNum.top().toString());
+        String c = stackNum.top().toString();
         for(int i=0;i<2;i++){
-            vbox.getChildren().remove(0);
+            stack.remove(0);
         }
+        
         stackNum.swap();
-        result2.setText(stackNum.top().toString());
+        stack.add(0,c);
+        stack.add(0,stackNum.top().toString());
         
-        vbox.getChildren().add(0,result1);
-        vbox.getChildren().add(0,result2);
-        
+        vbox.setItems(stack);
         System.out.println(stackNum);
+
     }
-    
-    
-    
+ 
     //Sezione di Inizializzazione dei Pulsanti
     private void initNumbers(Button[] butt){
         butt[0] = num0;
@@ -612,4 +591,5 @@ public class CalcController implements Initializable {
         btn[24] = y;
         btn[25] = z;
     }
+
 }
