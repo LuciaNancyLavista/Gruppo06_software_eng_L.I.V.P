@@ -47,12 +47,16 @@ public class StackNum {
     }
 
     // metodo over per duplicare il penultimo elemento dello stack e inserimento in testa
-    public void over(){
+    public void over() throws Exception{
+        if(stack.size() < 2)
+            throw new Exception();
         stack.addFirst(stack.get(1));
     }
 
     // metodo swap per scambiare gli ultimi due numeri nello stack
-    public void swap(){
+    public void swap() throws Exception{
+        if(stack.size() < 2)
+            throw new Exception();
         // prima si eliminano dallo stack
         Complex e1 = stack.removeFirst();
         Complex e2 = stack.removeFirst();

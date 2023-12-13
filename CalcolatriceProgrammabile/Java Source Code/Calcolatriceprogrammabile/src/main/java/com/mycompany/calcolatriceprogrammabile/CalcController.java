@@ -13,6 +13,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import com.mycompany.cal.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
@@ -168,10 +172,21 @@ public class CalcController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //funzioni init dei pulsanti della calcolatrice
         initLetters(buttonletters);
         initNumbers(buttonNum);
         
+        //settaggio del colore per lo stack grafico
         vbox.setStyle("-fx-control-inner-background: #ac9eff;");
+        
+        //binding per i pulsanti dello stack
+        dup.disableProperty().bind(Bindings.isEmpty(stack));
+        drop.disableProperty().bind(Bindings.isEmpty(stack));
+        swap.disableProperty().bind(Bindings.isEmpty(stack));
+        over.disableProperty().bind(Bindings.isEmpty(stack));
+        
+        //collegamento alla lista osservabile(stack)
+        vbox.setItems(stack);
         
         //setOnAction dei pulsanti di utility
         for(int i=0;i<buttonletters.length;i++){
@@ -257,9 +272,23 @@ public class CalcController implements Initializable {
         
         drop.setOnAction(event13 -> Drop(event13));
         
-        over.setOnAction(event14 -> Over(event14));
+        over.setOnAction(event14 -> {
+            try {
+                Over(event14);
+            } catch (Exception ex) {
+                exception.setText("");
+                exception.setText("Swap non possibile, non ci sono abbastanza valori");
+            }
+        });
         
-        swap.setOnAction(event15 -> Swap(event15));
+        swap.setOnAction(event15 -> {
+            try {
+                Swap(event15);
+            } catch (Exception ex) {
+                exception.setText("");
+                exception.setText("Swap non possibile, non ci sono abbastanza valori");
+            }
+        });
         
         //setOnAction dei pulsati delle operazioni sulle varabili
         maggX.setOnAction(event16 -> {
@@ -352,7 +381,6 @@ public class CalcController implements Initializable {
         exception.setText("");
         inserisci.inserisci(seq, stackNum);
         stack.add(0,stackNum.top().toString());
-        vbox.setItems(stack);
         insert.setText("");
         System.out.println(stackNum);
     }
@@ -365,7 +393,6 @@ public class CalcController implements Initializable {
             stack.remove(0);    
         }
         stack.add(0,stackNum.top().toString());
-        vbox.setItems(stack);
         System.out.println(stackNum);
     }
 
@@ -376,7 +403,6 @@ public class CalcController implements Initializable {
             stack.remove(0);
         }
         stack.add(0,stackNum.top().toString());
-        vbox.setItems(stack);
         System.out.println(stackNum);
         
     }
@@ -389,7 +415,6 @@ public class CalcController implements Initializable {
         }
         
         stack.add(0,stackNum.top().toString());
-        vbox.setItems(stack);
         System.out.println(stackNum);
         
     }
@@ -401,7 +426,6 @@ public class CalcController implements Initializable {
             stack.remove(0);
         }
         stack.add(0,stackNum.top().toString());
-        vbox.setItems(stack);
         System.out.println(stackNum);
     }
 
@@ -416,7 +440,6 @@ public class CalcController implements Initializable {
         stack.add(0,c.toString());
         stackNum.push(c);
         
-        vbox.setItems(stack);
         System.out.println(stackNum);
         
     }
@@ -426,7 +449,6 @@ public class CalcController implements Initializable {
         ope.invSign(stackNum);
         stack.remove(0);
         stack.add(0,stackNum.top().toString());
-        vbox.setItems(stack);
         System.out.println(stackNum); 
     }
     
@@ -475,7 +497,6 @@ public class CalcController implements Initializable {
         var.setFont(new Font(20));
         var.setText(stackNum.top().toString());
         stack.add(0,var.getText());
-        vbox.setItems(stack);
         
     }
 
@@ -504,14 +525,12 @@ public class CalcController implements Initializable {
     private void Clear(ActionEvent event){
         stackNum.clear();
         stack.clear();
-        vbox.setItems(stack);
         System.out.println("Clear");
     }
     
     @FXML
     private void Dup(ActionEvent event) {
         stack.add(0,stackNum.top().toString());
-        vbox.setItems(stack);
         stackNum.dup();
         System.out.println(stackNum);
     }
@@ -519,22 +538,24 @@ public class CalcController implements Initializable {
     @FXML
     private void Drop(ActionEvent event) {
         stack.remove(0);
-        vbox.setItems(stack);
         stackNum.drop();
         System.out.println(stackNum);
     }
 
     @FXML
-    private void Over(ActionEvent event) {
+    private void Over(ActionEvent event) throws Exception {
+        if(stackNum.stackSize() < 2)
+            throw new Exception();
         stackNum.over();
         stack.add(0,stackNum.top().toString());
-        vbox.setItems(stack);
         System.out.println(stackNum);
     }
 
     @FXML
-    private void Swap(ActionEvent event) {
+    private void Swap(ActionEvent event) throws Exception {
         String c = stackNum.top().toString();
+        if(stackNum.stackSize() < 2)
+            throw new Exception();
         for(int i=0;i<2;i++){
             stack.remove(0);
         }
@@ -543,7 +564,6 @@ public class CalcController implements Initializable {
         stack.add(0,c);
         stack.add(0,stackNum.top().toString());
         
-        vbox.setItems(stack);
         System.out.println(stackNum);
 
     }
