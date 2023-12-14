@@ -19,8 +19,12 @@ class StackNum<Complex>{
 
 
 
-class CUI{
-    + launch(args) : void
+class App{
+    - scene : Scene
+    + main(String[] args) : void
+    - loadFXML(String) fxml : Parent
+      setRoot(String fxml) : void
+    + start(Stage stage) : void
 }
 
 class CalcController{
@@ -67,10 +71,10 @@ class OperazioniVariabili{
     + lessX(String var) : Complex
 }
 
-CUI --> CalcController
+App --> CalcController
 
 CalcController .. N1
-CUI .. N1
+App .. N1
 
 CalcController --> InserisciOperazioni : <<use>>
 CalcController --> InserisciNumero : <<use>>

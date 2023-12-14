@@ -2,8 +2,12 @@
 skinparam shadowing true 
 
 note "Le classi figlie di exception sono tutte eccezioni controllate e gestite dal controller" as N1
-class CUI{
-    + launch(args) : void
+class App{
+    - scene : Scene
+    + main(String[] args) : void
+    - loadFXML(String) fxml : Parent
+      setRoot(String fxml) : void
+    + start(Stage stage) : void
 }
 
 class CalcController{
@@ -48,7 +52,7 @@ WrongNumberException .. N1
 ArithmeticException .. N1
 
 
-CUI --> CalcController : contains
+App --> CalcController : contains
 CalcController -- Exception : handle >
 CalcController o-- CalcView : <<has a>>
 @enduml

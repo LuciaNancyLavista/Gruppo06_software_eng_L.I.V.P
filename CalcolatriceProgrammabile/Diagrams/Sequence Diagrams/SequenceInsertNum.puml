@@ -4,11 +4,11 @@ skinparam Shadowing true
 
 title InsertNum - Sequence Diagram
 
-CUI -> InserisciNumero: inserisci
+App -> InserisciNumero: inserisci
 activate InserisciNumero
-InserisciNumero --> CUI: inserisci(OK)
+InserisciNumero --> App: inserisci(OK)
 deactivate InserisciNumero
-CUI -> StackNum: push
+App -> StackNum: push
 
 '!include ../../plantuml-styles/ae-copyright-footer.txt
 @enduml

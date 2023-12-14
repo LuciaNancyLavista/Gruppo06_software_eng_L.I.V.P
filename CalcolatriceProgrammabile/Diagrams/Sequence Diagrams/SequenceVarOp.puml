@@ -2,7 +2,7 @@
 skinparam Shadowing true
 
 title Operazione: duplicate - Sequence Diagram
-CUI -> InserisciVariabile: maggX
+App -> InserisciVariabile: maggX
 activate InserisciVariabile
 InserisciVariabile -> StackNum: top
 activate StackNum

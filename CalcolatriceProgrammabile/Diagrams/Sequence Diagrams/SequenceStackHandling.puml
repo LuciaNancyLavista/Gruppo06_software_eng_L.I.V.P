@@ -4,7 +4,7 @@ skinparam Shadowing true
 
 title Operazione: duplicate - Sequence Diagram
 
-CUI -> ManipolazioneStack: duplicate
+App -> ManipolazioneStack: duplicate
 activate ManipolazioneStack
 ManipolazioneStack -> StackNum: top
 activate StackNum
