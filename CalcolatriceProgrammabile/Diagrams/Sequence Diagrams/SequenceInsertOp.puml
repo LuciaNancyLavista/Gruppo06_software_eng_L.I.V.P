@@ -4,7 +4,7 @@ skinparam Shadowing true
 
 title Operazione: add - Sequence Diagram
 
-App -> InserisciOperazione: add
+CalcController -> InserisciOperazione: add
 activate InserisciOperazione
 InserisciOperazione -> ManipolazioneStack: drop
 activate ManipolazioneStack
