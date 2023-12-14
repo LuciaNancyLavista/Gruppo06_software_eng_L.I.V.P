@@ -1,0 +1,56 @@
+@startuml ControllerMethod 
+skinparam shadowing true
+title ControllerMethod
+
+class ControllerMethod{
+   - stackNum : StackNum
+   - inserisci : InserisciNumero
+   - ope : InserisciOperazione
+   - opeVar : OperazioniVariabili
+   - stack : ObservableList<String>
+   - variabili : ObservableList<String>
+
+   + inizialize(URL url,ResourceBundle rb): void
+
+   + number(ActionEvent event) : void
+
+   + letters(ActionEvent event) : void
+
+   + Spazio(ActionEvent event) : void
+
+   + Uguale(ActionEvent event) : void
+
+   + Division(ActionEvent event) : void
+
+   + Multiply(ActionEvent event) : void
+
+   + Addition(ActionEvent event) : void
+
+   + Minus(ActionEvent event) : void
+
+   + Radix(ActionEvent event) : void
+
+   + InvSign(ActioinEvent event) : void
+
+   + MaggX(ActionEvent event) : void
+
+   + LessX(ActionEvent event) : void
+
+   + MinX(ActionEvent event) : void
+
+   + PlusX(ActionEvent event) : void
+
+   + ClearVariable(ActionEvent event) : void
+
+   + Clear(ActionEvent event) : void
+
+   + Dup(ActionEvent event) : void
+
+   + Drop(ActionEvent event) : void
+
+   + Over(ActionEvent event) : void
+
+   + Swap(ActionEvent event) : void
+
+}
+@enduml
