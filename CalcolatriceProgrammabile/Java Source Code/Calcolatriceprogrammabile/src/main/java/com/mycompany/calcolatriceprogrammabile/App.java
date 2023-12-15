@@ -20,7 +20,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("primary"), 729, 562);
         stage.setTitle("Programmable Calculator LIVP");
         stage.getIcons().add(new Image("file:calculator.png"));
-        
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
