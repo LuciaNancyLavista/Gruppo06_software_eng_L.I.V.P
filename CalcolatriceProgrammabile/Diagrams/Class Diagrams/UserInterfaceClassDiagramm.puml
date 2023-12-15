@@ -4,22 +4,17 @@ skinparam shadowing true
 note "Le classi figlie di exception sono tutte eccezioni controllate e gestite dal controller" as N1
 class App{
     - scene : Scene
-    + main(String[] args) : void
-    - loadFXML(String) fxml : Parent
-      setRoot(String fxml) : void
+    + {static} main(String[] args) : void
+    - {static} loadFXML(String) fxml : Parent
+      {static} setRoot(String fxml) : void
     + start(Stage stage) : void
 }
 
 class CalcController{
-    - view : CalcView
-    + initButtons() : void
-    + initActions() : void 
+I metodi del controller e i suoi attributi 
+sono disponibili nel diagramma "ControllerMethod"
 }
-class CalcView{
-    + buttons : Button[]
-    + display : TextField
-    + stack : TextField/Label : <<da decidere in corso di sviluppo>> 
-}
+
 
 exception Exception{
     + print(msgError) : void
@@ -54,5 +49,4 @@ ArithmeticException .. N1
 
 App --> CalcController : contains
 CalcController -- Exception : handle >
-CalcController o-- CalcView : <<has a>>
 @enduml
