@@ -15,7 +15,7 @@ import project.exception.*;
 
 /**
  *
- * @author luigi
+ * @author Lucia Nancy Lavista
  */
 public class OperazioniVariabiliTest {
 
