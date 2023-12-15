@@ -15,7 +15,7 @@ import project.exception.*;
 
 /**
  *
- * @author luigi
+ * @author Michele Penna
  */
 public class InserisciNumeroTest {
     
