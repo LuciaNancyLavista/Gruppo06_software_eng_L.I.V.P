@@ -11,10 +11,10 @@ import java.util.LinkedList;
  * @author luigi
  */
 public class StackNum {
-    //dichiarazione di una LinkedList per lo stack di tipo Complex, così da poterci ritornare un complesso
+    //dichiarazione di una LinkedList per lo stack di tipo Complex, così da poter inserire un complesso
     private LinkedList<Complex> stack;
     
-    // definizione costruttore con la lista da dichiarare
+    // definizione costruttore
     public StackNum(){
         stack = new LinkedList<>();
     }
@@ -29,7 +29,7 @@ public class StackNum {
         return stack.getFirst();
     }
 
-    // metodo duplicate per inserire il numero complesso (top) duplicato nello stack
+    // metodo dup per inserire il numero complesso (top) duplicato nello stack
     public void dup(){
         Complex temp = stack.getFirst();
         stack.addFirst(temp);    
@@ -42,21 +42,24 @@ public class StackNum {
 
     // metodo clear per pulire lo stack
     public void clear(){
-        stack.clear();
-        
+        stack.clear();    
     }
 
-    // metodo over per duplicare il penultimo elemento dello stack e inserimento in testa
+    // metodo over per duplicare il penultimo elemento dello stack e inserirlo in testa
     public void over() throws Exception{
+        
         if(stack.size() < 2)
             throw new Exception();
+        
         stack.addFirst(stack.get(1));
     }
 
-    // metodo swap per scambiare gli ultimi due numeri nello stack
+    // metodo swap per scambiare gli ultimi due numeri inseriti nello stack
     public void swap() throws Exception{
+        
         if(stack.size() < 2)
             throw new Exception();
+        
         // prima si eliminano dallo stack
         Complex e1 = stack.removeFirst();
         Complex e2 = stack.removeFirst();
@@ -66,12 +69,12 @@ public class StackNum {
         stack.addFirst(e2);   
     }
 
-    // metodo isEmpty per verifica se vuoto lo stack
+    // metodo isEmpty per verifica se lo stack è vuoto
     public boolean isEmpty(){
         return stack.isEmpty();
     }
     
-    //metodo stackSize per controllare la dimensione dello stack
+    //metodo stackSize per ottenere la dimensione dello stack
     public int stackSize(){
         return stack.size();
     }

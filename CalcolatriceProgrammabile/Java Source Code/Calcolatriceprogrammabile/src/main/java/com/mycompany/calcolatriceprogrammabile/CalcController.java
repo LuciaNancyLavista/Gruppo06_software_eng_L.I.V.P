@@ -24,7 +24,7 @@ import project.exception.OpeArithmeticException;
 /**
  * FXML Controller class
  *
- * @author Gruppo06
+ * @author Luigi Veniero
  */
 public class CalcController implements Initializable {
     
@@ -159,7 +159,9 @@ public class CalcController implements Initializable {
     
     private OperazioniVariabili opeVar = new OperazioniVariabili(stackNum);
     
+    //instanza di due liste osservabili per la gestione della cronologia dello stack e delle variabili
     private ObservableList<String> stack = FXCollections.observableArrayList();
+    
     private ObservableList<String> variabili = FXCollections.observableArrayList();
     
     /**
@@ -175,6 +177,8 @@ public class CalcController implements Initializable {
         
         //settaggio del colore per lo stack grafico
         vbox.setStyle("-fx-control-inner-background: #ac9eff;");
+        
+        //settaggio del colore per la cronologia delle variabili
         VarBox.setStyle("-fx-control-inner-background: #ac9eff;");
         
         //binding per i pulsanti dello stack

@@ -16,7 +16,7 @@ public class InserisciOperazioni {
     public void add(StackNum s) throws EmptyStackException{
 
 	// controllo se sono stati inseriti almeno 2 numeri 
-    // richiamando l'eccezione sullo stack
+        // richiamando l'eccezione sullo stack
 	if (s.stackSize()< 2) 
             throw new EmptyStackException("Inserire almeno due numeri nello stack. ");
 
@@ -51,7 +51,7 @@ public class InserisciOperazioni {
         s.push(new Complex(newReal,newImg));
     }
 
-	// Implementazione metodo Multiplication: moltiplicazione di due numeri complessi
+    // Implementazione metodo Multiplication: moltiplicazione di due numeri complessi
     public void mult(StackNum s) throws EmptyStackException{
 
 	// controllo se sono stati inseriti almeno 2 numeri richiamando l'eccezione sullo stack
@@ -81,13 +81,14 @@ public class InserisciOperazioni {
         Complex c2 = s.drop();
         Complex c1 = s.drop();
 
-	// se la parte immaginare del divisore è uguale a 0 allora lancio l'eccezione aritmetica e reinserisce i valori
+	// se il divisore è uguale a 0 allora lancio l'eccezione aritmetica e reinserisco i valori
         //droppati nello stack
 	if (c2.getImaginary() == 0 && c2.getReal() == 0){
             s.push(c1);
             s.push(c2);
             throw new OpeArithmeticException("Errore: Divisione per zero. ");
         }  
+        
 	// divido in parte reale ed immaginaria così da poter effettuare la divisione 
 	double zreal = 0;
 	double zimag = 0;
@@ -117,8 +118,6 @@ public class InserisciOperazioni {
         double newImg = 0;
         double a = c.getReal();
         double b = c.getImaginary();
-        //double newReal = Math.sqrt((Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)) + a) / 2);
-        //double newImg = Math.signum(b) * Math.sqrt((Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)) - a) / 2);
         
         if(b != 0){
             double module = Math.sqrt(a*a + b*b);
@@ -136,11 +135,11 @@ public class InserisciOperazioni {
         s.push(new Complex(-newReal, -newImg));
     }
 
-	// Implementazione metodo Inversion Sign: inversione del segno di un numero complesso
+    // Implementazione metodo Inversion Sign: inversione del segno di un numero complesso
     public void invSign(StackNum s) throws EmptyStackException{
 
-	// controllo se lo stack è vuoto (visto che ci serve solo un numero per questa operazione) lanciando un'eccezione sullo stack
-	if (s.isEmpty()) 
+	// controllo se lo stack è vuoto	
+        if (s.isEmpty()) 
 	    throw new EmptyStackException("Stack vuoto: serve almeno un numero. ");
 
 	// prelevamento dallo stack

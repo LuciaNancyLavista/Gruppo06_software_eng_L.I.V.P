@@ -12,7 +12,7 @@ public class Complex {
     private double real;
     private double imaginary;
 
-	// costruttore della classe Complex
+    // costruttore della classe Complex
     public Complex(double real, double imaginary){
         this.real = real;
         this.imaginary = imaginary;
@@ -35,7 +35,7 @@ public class Complex {
     }
 
     // Override methods
-	// creazioen metodo toString per richiamano successivo a video della calcolatrice
+    // creazioen metodo toString per richiamano successivo a video della calcolatrice
     @Override
     public String toString(){
         String format = "#.###";
