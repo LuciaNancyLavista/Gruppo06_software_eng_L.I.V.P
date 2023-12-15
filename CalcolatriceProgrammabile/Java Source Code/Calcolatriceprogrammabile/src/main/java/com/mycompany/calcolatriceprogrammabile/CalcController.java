@@ -10,17 +10,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import com.mycompany.cal.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import project.exception.EmptyStackException;
 import project.exception.InsertVariableException;
@@ -164,8 +159,8 @@ public class CalcController implements Initializable {
     
     private OperazioniVariabili opeVar = new OperazioniVariabili(stackNum);
     
-    ObservableList<String> stack = FXCollections.observableArrayList();
-    ObservableList<String> variabili = FXCollections.observableArrayList();
+    private ObservableList<String> stack = FXCollections.observableArrayList();
+    private ObservableList<String> variabili = FXCollections.observableArrayList();
     
     /**
      * Initializes the controller class.
@@ -283,7 +278,7 @@ public class CalcController implements Initializable {
                 Over(event14);
             } catch (Exception ex) {
                 exception.setText("");
-                exception.setText("Swap non possibile, non ci sono abbastanza valori");
+                exception.setText("Over non possibile, non ci sono abbastanza valori");
             }
         });
         
