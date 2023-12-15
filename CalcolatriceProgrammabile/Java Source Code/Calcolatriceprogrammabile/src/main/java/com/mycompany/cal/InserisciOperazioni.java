@@ -76,15 +76,18 @@ public class InserisciOperazioni {
 	// controllo se sono stati inseriti almeno 2 numeri richiamando l'eccezione sullo stack
 	if (s.stackSize() < 2) 
             throw new EmptyStackException("Inserire almeno due numeri nello stack. ");
-
+        
 	// prelevamento dallo stack
         Complex c2 = s.drop();
         Complex c1 = s.drop();
 
-	// se la parte immaginare del divisore è uguale a 0 allora lancio l'eccezione aritmetica
-	if (c2.getImaginary() == 0 && c2.getReal() == 0) 
+	// se la parte immaginare del divisore è uguale a 0 allora lancio l'eccezione aritmetica e reinserisce i valori
+        //droppati nello stack
+	if (c2.getImaginary() == 0 && c2.getReal() == 0){
+            s.push(c1);
+            s.push(c2);
             throw new OpeArithmeticException("Errore: Divisione per zero. ");
-	   
+        }  
 	// divido in parte reale ed immaginaria così da poter effettuare la divisione 
 	double zreal = 0;
 	double zimag = 0;
