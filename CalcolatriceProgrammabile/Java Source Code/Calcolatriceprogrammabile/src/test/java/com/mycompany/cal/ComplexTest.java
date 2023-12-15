@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author luigi
+ * @author Michele Penna
  */
 public class ComplexTest {
     
