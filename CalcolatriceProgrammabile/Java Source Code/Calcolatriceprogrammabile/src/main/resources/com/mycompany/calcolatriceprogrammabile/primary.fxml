@@ -13,6 +13,8 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
+<!-- author: Lucia Nancy Lavista -->
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="729.0" style="-fx-border-color: black; -fx-background-color: #3e3866;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.calcolatriceprogrammabile.CalcController">
    <children>
       <TextField fx:id="insert" alignment="CENTER_RIGHT" layoutX="227.0" layoutY="33.0" prefHeight="59.0" prefWidth="276.0" style="-fx-background-color: #ac9eff; -fx-border-color: black;">
