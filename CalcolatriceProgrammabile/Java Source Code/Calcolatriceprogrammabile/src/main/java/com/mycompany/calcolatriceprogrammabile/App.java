@@ -17,7 +17,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 729, 562);
+        scene = new Scene(loadFXML("primary"), 740, 570);
         stage.setTitle("Programmable Calculator LIVP");
         stage.getIcons().add(new Image("file:calculator.png"));
         stage.setResizable(false);
